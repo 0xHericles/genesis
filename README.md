@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo.png" alt="Genesis" width="400">
+<img src="assets/logo.png" alt="Genesis" width="100%">
 
 <br>
 
