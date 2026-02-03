@@ -1,0 +1,108 @@
+---
+description: Core principles that guide all work
+alwaysApply: true
+---
+
+# Principles
+
+Ten rules that guide all work. Reference by number (.1, .2, etc).
+
+## .1 — Investigate First
+
+Before any change, understand the context.
+- Search for existing implementations
+- Understand current architecture
+- Find the "gold standard" to follow
+- Map dependencies before touching code
+
+**Violation:** Making changes without understanding what exists.
+
+## .2 — Data Flows Down
+
+Strict communication paths:
+```
+Frontend → Service → Backend → Database
+```
+No shortcuts. No direct database calls from frontend.
+
+**Violation:** Bypassing established data flow.
+
+## .3 — Single Source of Truth
+
+Every piece of data has one authoritative source.
+- No duplicate state
+- No storing derived data
+- Changes propagate from source
+
+**Violation:** Creating parallel sources of truth.
+
+## .4 — All or Nothing
+
+Operations complete fully or not at all.
+- No partial states
+- No orphaned data
+- Atomic transactions
+
+**Violation:** Leaving system in inconsistent state.
+
+## .5 — Types are Contracts
+
+Type safety everywhere.
+- All inputs typed
+- All outputs typed
+- No `any` without justification
+- Runtime validation at boundaries
+
+**Violation:** Bypassing type system.
+
+## .6 — Errors are Visible
+
+Handle errors, don't hide them.
+- Every async operation has error handling
+- Errors propagate with context
+- User-facing errors are helpful
+- System errors are logged
+
+**Violation:** Swallowing errors silently.
+
+## .7 — Clean Up After Yourself
+
+Resources are acquired and released.
+- Database connections pooled
+- File handles closed
+- Event listeners removed
+- No memory leaks
+
+**Violation:** Resource leaks.
+
+## .8 — Security by Default
+
+Not an afterthought.
+- Input validation everywhere
+- No secrets in code
+- Least privilege
+- Auth before authz
+
+**Violation:** Security shortcuts.
+
+## .9 — Test What Matters
+
+Critical paths have tests.
+- Edge cases documented
+- Integration points verified
+- Regression tests for bugs
+
+**Violation:** Shipping untested critical code.
+
+## .10 — Document the Why
+
+If it matters, explain it.
+- Complex logic explained inline
+- Architecture decisions recorded
+- Non-obvious code commented
+
+**Violation:** Undocumented complexity.
+
+---
+
+**Priority:** When principles conflict, lower numbers win.

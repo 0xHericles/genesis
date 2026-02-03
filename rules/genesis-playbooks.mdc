@@ -1,0 +1,64 @@
+---
+description: Base playbooks - user patterns are in ~/.genesis/playbooks/
+alwaysApply: true
+---
+
+# Playbooks
+
+Standard patterns. User-specific patterns accumulate in `~/.genesis/playbooks/`.
+
+## Error Handling
+
+```typescript
+try {
+  const result = await operation()
+  return result
+} catch (error) {
+  logger.error('Operation failed', { error, context })
+  throw error
+}
+```
+
+Never swallow errors. Always log context.
+
+## Async with Cleanup
+
+```typescript
+const controller = new AbortController()
+
+try {
+  const result = await fetch(url, { signal: controller.signal })
+  return result
+} catch (error) {
+  if (error.name === 'AbortError') return
+  throw error
+} finally {
+  // cleanup
+}
+```
+
+## Test Structure
+
+```typescript
+describe('Unit', () => {
+  describe('when [condition]', () => {
+    it('should [behavior]', () => {
+      // Arrange
+      // Act
+      // Assert
+    })
+  })
+})
+```
+
+## Git Commits
+
+```
+type(scope): description
+```
+
+Types: feat, fix, refactor, chore, docs, test
+
+---
+
+**User playbooks:** Check `~/.genesis/playbooks/` for project-specific patterns learned over time.

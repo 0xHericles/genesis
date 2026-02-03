@@ -1,0 +1,14 @@
+{
+  "workspaces": {
+    "backend": {
+      "path": "/path/to/your/backend",
+      "type": "backend",
+      "language": "python"
+    },
+    "frontend": {
+      "path": "/path/to/your/frontend",
+      "type": "frontend",
+      "language": "typescript"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+---
+description: Genesis shorthand protocol for agent communication
+alwaysApply: true
+---
+
+# Protocol
+
+Shorthand notation for efficient agent communication.
+
+## Modes
+
+| Symbol | Mode | Purpose |
+|--------|------|---------|
+| `>plan` | Planner | Design solutions |
+| `>build` | Builder | Implement code |
+| `>review` | Reviewer | Audit code |
+| `>fix` | Fixer | Debug issues |
+| `>learn` | Learner | Extract insights |
+
+## Principles
+
+Reference by number:
+
+| Symbol | Principle |
+|--------|-----------|
+| `.1` | Investigate first |
+| `.2` | Data flows down |
+| `.3` | Single source of truth |
+| `.4` | All or nothing |
+| `.5` | Types are contracts |
+| `.6` | Errors are visible |
+| `.7` | Clean up after yourself |
+| `.8` | Security by default |
+| `.9` | Test what matters |
+| `.10` | Document the why |
+
+## Status
+
+| Symbol | Meaning |
+|--------|---------|
+| `~pending` | Not started |
+| `~wip` | Work in progress |
+| `~blocked` | Blocked |
+| `~review` | Awaiting review |
+| `~done` | Completed |
+
+## Severity
+
+| Symbol | Level |
+|--------|-------|
+| `!crit` | Critical - drop everything |
+| `!high` | High - fix soon |
+| `!med` | Medium - schedule |
+| `!low` | Low - backlog |
+
+## Workspaces
+
+Reference configured workspaces:
+
+| Symbol | Meaning |
+|--------|---------|
+| `@back` | Backend workspace |
+| `@web` | Frontend workspace |
+| `@[name]` | Any configured workspace |
+
+## Usage Examples
+
+**Task with context:**
+```
+>build @back ~wip .1
+Add pagination - following existing patterns
+```
+
+**Bug report:**
+```
+>fix @web !high .6
+Login errors not showing to user
+```
+
+**Status update:**
+```
+>build ~done .5
+Auth complete - fully typed
+```
+
+**Handoff:**
+```
+>plan ~done → >build ~pending
+Plan ready for implementation
+```
+
+**Review finding:**
+```
+>review .3 violation
+Duplicate state in component and store
+```
+
+## In Plans
+
+```markdown
+## Steps
+1. >build @back ~pending - Create endpoint
+2. >build @web ~pending - Add UI
+3. >review ~pending .5 .8 - Security + types check
+```
+
+## In Postmortems
+
+```markdown
+## Root Cause
+Violated .4 - partial state left when operation failed
+```
+
+## Flow
+
+```
+>plan ~done
+    ↓
+>build ~wip
+    ↓
+>build ~done
+    ↓
+>review ~wip
+    ↓ (if issues)
+>build ~wip (fix)
+    ↓
+>review approved
+    ↓
+>learn (if significant)
+    ↓
+~done
+```

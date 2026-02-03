@@ -1,0 +1,21 @@
+# User config
+config.json
+
+# Dependencies
+node_modules/
+
+# Build
+dist/
+
+# OS
+.DS_Store
+
+# Editor
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Wrangler
+.wrangler/
