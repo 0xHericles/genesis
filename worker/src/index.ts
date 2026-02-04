@@ -8,7 +8,7 @@
  * @example curl -fsSL genesis.hericl.es | bash
  */
 
-import { handleInstall, handleLanding, handleHealth } from "./handlers";
+import { handleInstall, handleLanding, handleHealth, handleDocs } from "./handlers";
 import { isCLI } from "./utils/request";
 import { notFound } from "./utils/response";
 
@@ -36,6 +36,10 @@ export default {
         return handleHealth();
 
       default:
+        // Handle docs routes
+        if (path.startsWith("/docs")) {
+          return handleDocs(path);
+        }
         return notFound("Not found. Try: curl -fsSL genesis.hericl.es | bash");
     }
   },

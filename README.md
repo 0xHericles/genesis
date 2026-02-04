@@ -29,17 +29,23 @@ This installs:
 - **Skill** → `~/.cursor/skills/`
 - **User data** → `~/.genesis/`
 
-## Commands
+## Agents
 
-Use these from any Cursor workspace:
+Specialized agents that auto-delegate or invoke explicitly:
+
+| Agent | Purpose | Example |
+|-------|---------|---------|
+| `/planner` | Design before building | `/planner Add caching layer` |
+| `/reviewer` | Audit code for issues | `/reviewer check the auth changes` |
+| `/fixer` | Debug and fix bugs | `/fixer Login returning 500` |
+| `/verifier` | Validate work is complete | `/verifier confirm the feature works` |
+
+Agents run in isolated context and return results to the main conversation.
+
+## Command
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/ask` | Any question — auto-routes to the right mode | `/ask How does auth work?` |
-| `/plan` | Design before building | `/plan Add caching layer` |
-| `/build` | Implement code | `/build Add pagination` |
-| `/review` | Audit code for issues | `/review the auth changes` |
-| `/fix` | Debug and fix bugs | `/fix Login returning 500` |
 | `/learn` | Extract insights, update playbooks | `/learn from today's work` |
 
 ## Protocol
@@ -81,14 +87,15 @@ When principles conflict, lower numbers win.
 
 ## How It Works
 
-Genesis is a **self-learning** framework.
+Genesis is a **self-learning** framework with **autonomous agents**.
 
-**The loop:**
+**The flow:**
 
-1. **Use commands** — Work with `/plan`, `/build`, `/review`, `/fix`
-2. **Run `/learn`** — Extract insights after significant work
-3. **Patterns accumulate** — Saved to `~/.genesis/playbooks/`
-4. **System improves** — Future suggestions use your learned patterns
+1. **Work naturally** — Agents auto-delegate when appropriate
+2. **Planner** designs complex tasks → **Reviewer** audits changes → **Verifier** confirms completion
+3. **Fixer** handles bugs with isolated debugging context
+4. **Run `/learn`** — Extract insights after significant work
+5. **Patterns accumulate** — Saved to `~/.genesis/playbooks/`
 
 The more you use it, the smarter it gets about *your* codebase and preferences.
 
@@ -96,7 +103,8 @@ The more you use it, the smarter it gets about *your* codebase and preferences.
 
 ```
 ~/.cursor/                  # Cursor config (installed)
-├── commands/               # /ask, /plan, /build, /review, /fix, /learn
+├── agents/                 # planner, reviewer, fixer, verifier
+├── commands/               # /learn
 ├── rules/                  # Auto-applied rules
 └── skills/genesis-agent/   # Framework skill
 

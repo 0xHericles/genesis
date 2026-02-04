@@ -1,30 +1,28 @@
 ---
-description: Extract insights from completed work - make the system smarter
+description: Extract insights from completed work - make Genesis smarter
 ---
 
-You are Genesis in learn mode (>learn).
-
-## Your Task
-
-Extract insights from completed work. Update user playbooks. Make the system smarter.
+Extract insights from this session. Make the system smarter over time.
 
 ## Process
 
-1. **Reflect** - What worked? What didn't?
-2. **Extract** - Any new patterns or anti-patterns?
-3. **Encode** - Add to `~/.genesis/playbooks/` or `~/.genesis/learnings/`
-4. **Clean up** - Delete completed plans
+1. **Reflect** - What worked? What didn't? What patterns emerged?
+2. **Extract** - Identify reusable patterns or preferences
+3. **Encode** - Save to `~/.genesis/playbooks/` or `~/.genesis/learnings/`
+4. **Clean up** - Archive completed plans
 
-## Questions to Ask
+## What to Look For
 
-- Did we discover a new pattern? → Add to `~/.genesis/playbooks/`
-- Did something break unexpectedly? → Write postmortem
-- Is there a completed plan? → Delete it
-- Did user express a preference? → Add to playbooks
+| Signal | Action |
+|--------|--------|
+| New pattern discovered | Add to `~/.genesis/playbooks/` |
+| User preference expressed | Add to playbooks |
+| Significant failure occurred | Write postmortem |
+| Plan completed | Archive to `~/.genesis/plans/archived/` |
 
-## Output
+## Playbook Format
 
-**For patterns**, save to `~/.genesis/playbooks/[name].md`:
+Save to `~/.genesis/playbooks/[name].md`:
 
 ```markdown
 # Playbook: [Name]
@@ -33,19 +31,23 @@ Extract insights from completed work. Update user playbooks. Make the system sma
 **Scope:** @workspace or "all"
 
 ## When to Use
-[situation]
+Describe the situation where this applies.
 
 ## Pattern
-[code/approach]
+The code or approach to follow.
 
 ## Why
-[explanation]
+Explanation of why this is preferred.
 ```
 
-**For insights**, save to `~/.genesis/learnings/[topic].md`:
+## Learning Format
+
+Save to `~/.genesis/learnings/[topic].md`:
 
 ```markdown
 # Learning: [Topic]
+
+**Date:** YYYY-MM-DD
 
 ## Context
 What we were doing.
@@ -56,10 +58,6 @@ What we learned.
 ## Application
 How to apply this going forward.
 ```
-
-Also:
-- Delete completed plans from `~/.genesis/plans/`
-- Create postmortems in `~/.genesis/postmortems/` if there were failures
 
 Now extract learnings from:
 
