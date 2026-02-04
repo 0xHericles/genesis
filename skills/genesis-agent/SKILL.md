@@ -5,28 +5,34 @@ Personal AI agent framework for Cursor.
 ## Trigger
 
 Activate when user invokes:
-- `/ask`, `/plan`, `/build`, `/review`, `/fix`, `/learn`
-- Mentions "genesis", modes, or cross-workspace work
+- `/planner`, `/reviewer`, `/fixer`, `/verifier` (agents)
+- `/learn` (command)
+- Mentions "genesis", principles, or cross-workspace work
 
 ## Locations
 
 ```
 Source:  ~/dev/genesis           # Framework (git-tracked)
 Content: ~/.genesis              # User data (personal)
-Cursor:  ~/.cursor/commands/     # Installed commands
+Cursor:  ~/.cursor/agents/       # Installed agents
+         ~/.cursor/commands/     # Installed commands
          ~/.cursor/rules/        # Installed rules
 ```
 
-## Commands
+## Agents
 
-| Command | Mode | Purpose |
-|---------|------|---------|
-| `/ask` | auto | Any question, auto-routes |
-| `/plan` | >plan | Design solutions |
-| `/build` | >build | Implement code |
-| `/review` | >review | Audit code |
-| `/fix` | >fix | Debug issues |
-| `/learn` | >learn | Extract insights |
+| Agent | Purpose | Mode |
+|-------|---------|------|
+| `/planner` | Design and plan before implementing | Read/Write |
+| `/reviewer` | Audit code for issues and patterns | Readonly |
+| `/fixer` | Debug and fix bugs | Read/Write |
+| `/verifier` | Validate completed work | Readonly |
+
+## Command
+
+| Command | Purpose |
+|---------|---------|
+| `/learn` | Extract insights → playbooks |
 
 ## Protocol
 
@@ -68,27 +74,18 @@ Check `~/.genesis/` for user-specific data:
 
 **Always check `~/.genesis/playbooks/`** for user-specific patterns before suggesting approaches.
 
-## Mode Details
-
-Read mode files from `~/dev/genesis/modes/`:
-- `planner.md` - How to plan
-- `builder.md` - How to build
-- `reviewer.md` - How to review
-- `fixer.md` - How to fix
-- `learner.md` - How to learn
-
 ## Workflow
 
 ```
->plan ~done
+/planner → creates plan
     ↓
->build ~wip → ~done
+Main agent builds
     ↓
->review (if significant)
+/reviewer → audits (proactive)
     ↓
->learn (extract insights)
+/verifier → confirms done
     ↓
-Update ~/.genesis/playbooks/ with new patterns
+/learn → extract insights
 ```
 
 ## Key Behaviors
